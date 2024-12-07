@@ -1,11 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 export default function Navbar() {
-  const user = {
-    displayName: "Raisul Kayes Raka",
-    photoURL: "https://placehold.co/50",
-    email: "raisulkayesofficial@gmail.com",
-  };
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
   const openSidebar = () => {
     document.getElementById("sidebar").style.transform = "translateX(-16rem)";
@@ -81,14 +80,16 @@ export default function Navbar() {
         <div className="hidden lg:block">
           {user && user?.email ? (
             <div className="group relative flex items-center gap-2">
-              <img src={user.photoURL} alt="" className="h-8 w-8 rounded" />
-              <div className="absolute right-0 top-full hidden rounded bg-white p-4 shadow group-hover:block">
+              <div>
+                <img src={user?.photoURL} alt="" className="h-8 w-8 rounded" />
+              </div>
+              <div className="absolute right-0 top-full hidden w-72 rounded bg-white p-4 shadow group-hover:block">
                 <div className="space-y-4">
                   <p className="whitespace-nowrap font-semibold">
                     {user?.displayName}
                   </p>
                   <button
-                    onClick={() => ""}
+                    onClick={logOut}
                     className="w-full rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
                   >
                     Logout
@@ -205,14 +206,16 @@ export default function Navbar() {
           <section>
             {user && user?.email ? (
               <div className="space-y-4">
-                <img
-                  src={user?.photoURL}
-                  alt=""
-                  className="h-12 w-12 rounded"
-                />
+                <div>
+                  <img
+                    src={user?.photoURL}
+                    alt=""
+                    className="h-12 w-12 rounded"
+                  />
+                </div>
                 <p className="font-semibold">{user?.displayName}</p>
                 <button
-                  onClick={() => ""}
+                  onClick={logOut}
                   className="w-full rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
                 >
                   Logout

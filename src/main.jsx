@@ -11,6 +11,9 @@ import MyAddedVisas from "./pages/MyAddedVisas.jsx";
 import MyVisaApplications from "./pages/MyVisaApplications.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import { HelmetProvider } from "react-helmet-async";
+import AuthProvider from "./provider/AuthProvider.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,15 +31,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-visa",
-        element: <AddVisa />,
+        element: (
+          <PrivateRoute>
+            <AddVisa />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-added-visas",
-        element: <MyAddedVisas />,
+        element: (
+          <PrivateRoute>
+            <MyAddedVisas />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-visa-applications",
-        element: <MyVisaApplications />,
+        element: (
+          <PrivateRoute>
+            <MyVisaApplications />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -52,6 +67,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <HelmetProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </HelmetProvider>
   </StrictMode>,
 );
