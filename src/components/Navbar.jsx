@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const user = {
+    displayName: "Raisul Kayes Raka",
+    photoURL: "https://placehold.co/50",
+    email: "raisulkayesofficial@gmail.com",
+  };
+
   const openSidebar = () => {
     document.getElementById("sidebar").style.transform = "translateX(-16rem)";
   };
@@ -72,27 +78,48 @@ export default function Navbar() {
             My Visa Applications
           </NavLink>
         </div>
-        <div className="hidden items-center justify-center gap-4 lg:flex">
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive
-                ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 font-semibold text-white"
-                : "rounded border border-[#4682A9] px-3 py-1 text-[#4682A9]"
-            }
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            className={({ isActive }) =>
-              isActive
-                ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 font-semibold text-white"
-                : "rounded border border-[#4682A9] px-3 py-1 text-[#4682A9]"
-            }
-          >
-            Register
-          </NavLink>
+        <div className="hidden lg:block">
+          {user && user?.email ? (
+            <div className="group relative flex items-center gap-2">
+              <img src={user.photoURL} alt="" className="h-8 w-8 rounded" />
+              <div className="absolute right-0 top-full hidden rounded bg-white p-4 shadow group-hover:block">
+                <div className="space-y-4">
+                  <p className="whitespace-nowrap font-semibold">
+                    {user?.displayName}
+                  </p>
+                  <button
+                    onClick={() => ""}
+                    className="w-full rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-4">
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive
+                    ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 font-semibold text-white"
+                    : "rounded border border-[#4682A9] px-3 py-1 text-[#4682A9]"
+                }
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                  isActive
+                    ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 font-semibold text-white"
+                    : "rounded border border-[#4682A9] px-3 py-1 text-[#4682A9]"
+                }
+              >
+                Register
+              </NavLink>
+            </div>
+          )}
         </div>
         <div className="lg:hidden">
           <button
@@ -175,30 +202,49 @@ export default function Navbar() {
               My Visa Applications
             </NavLink>
           </div>
-          <div className="flex flex-col gap-4">
-            <NavLink
-              to="/login"
-              onClick={closeSidebar}
-              className={({ isActive }) =>
-                isActive
-                  ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 text-center font-semibold text-white"
-                  : "rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
-              }
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              onClick={closeSidebar}
-              className={({ isActive }) =>
-                isActive
-                  ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 text-center font-semibold text-white"
-                  : "rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
-              }
-            >
-              Register
-            </NavLink>
-          </div>
+          <section>
+            {user && user?.email ? (
+              <div className="space-y-4">
+                <img
+                  src={user?.photoURL}
+                  alt=""
+                  className="h-12 w-12 rounded"
+                />
+                <p className="font-semibold">{user?.displayName}</p>
+                <button
+                  onClick={() => ""}
+                  className="w-full rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <NavLink
+                  to="/login"
+                  onClick={closeSidebar}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 text-center font-semibold text-white"
+                      : "rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  onClick={closeSidebar}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "active rounded border-[#4682A9] bg-[#4682A9] px-3 py-1 text-center font-semibold text-white"
+                      : "rounded border border-[#4682A9] px-3 py-1 text-center text-[#4682A9]"
+                  }
+                >
+                  Register
+                </NavLink>
+              </div>
+            )}
+          </section>
         </div>
       </section>
     </nav>
