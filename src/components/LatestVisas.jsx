@@ -2,7 +2,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 
 export default function LatestVisas() {
   return (
-    <section className="py-8">
+    <section className="py-12">
       <div className="mx-auto w-11/12 max-w-screen-2xl">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 text-[#4682A9]">
