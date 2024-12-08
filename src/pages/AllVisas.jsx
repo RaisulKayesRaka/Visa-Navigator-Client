@@ -10,6 +10,27 @@ export default function AllVisas() {
               </h2>
             </div>
           </section>
+          {/* filter based on visa type */}
+          <section className="mb-8 flex items-center gap-4">
+            <h2 className="text-xl font-semibold">Filter By:</h2>
+            <form action="">
+              <label htmlFor="visaType" className="sr-only">
+                Visa Type
+              </label>
+              <select
+                id="visaType"
+                name="visaType"
+                className="rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
+                required
+              >
+                <option value="">All</option>
+                <option value="Tourist visa">Tourist visa</option>
+                <option value="Student visa">Student visa</option>
+                <option value="Official visa">Official visa</option>
+                <option value="Business visa">Business visa</option>
+              </select>
+            </form>
+          </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <section className="rounded p-4 shadow">
               <div className="h-48 rounded bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRofoHVTNeOXThr6qwXtFZjcCUJTgYcNG3cxA&s')] bg-cover bg-no-repeat text-white"></div>

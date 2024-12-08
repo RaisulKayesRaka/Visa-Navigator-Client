@@ -10,6 +10,18 @@ export default function AllVisaApplications() {
               </h2>
             </div>
           </section>
+          <section className="mb-8">
+            <form action="" className="flex items-center gap-4">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search by country name"
+                id="search"
+                className="w-full rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
+              />
+              <button type="submit" className="bg-[#4682A9] px-4 py-2 text-white rounded">Search</button>
+            </form>
+          </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <section className="rounded p-4 shadow">
               <div className="h-48 rounded bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRofoHVTNeOXThr6qwXtFZjcCUJTgYcNG3cxA&s')] bg-cover bg-no-repeat text-white"></div>
