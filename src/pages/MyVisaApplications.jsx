@@ -6,16 +6,28 @@ import Swal from "sweetalert2";
 export default function AllVisaApplications() {
   const { user } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
+  const [filteredApplications, setFilteredApplications] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/applications")
       .then((res) => res.json())
-      .then((data) =>
-        setApplications(
-          data.filter((application) => application.email === user.email),
-        ),
-      );
+      .then((data) => {
+        const myApplications = data.filter(
+          (application) => application.email === user.email,
+        );
+        setApplications(myApplications);
+        setFilteredApplications(myApplications);
+      });
   }, [user]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchQuery = e.target.search.value;
+    const filtered = applications.filter((application) =>
+      application.countryName.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    setFilteredApplications(filtered);
+  };
 
   const handleCancel = (id) => {
     Swal.fire({
@@ -43,6 +55,7 @@ export default function AllVisaApplications() {
                 (application) => application._id !== id,
               );
               setApplications(remainingApplications);
+              setFilteredApplications(remainingApplications);
             }
           });
       }
@@ -61,7 +74,7 @@ export default function AllVisaApplications() {
             </div>
           </section>
           <section className="mb-8">
-            <form action="" className="flex items-center gap-4">
+            <form onSubmit={handleSearch} className="flex items-center gap-4">
               <input
                 type="text"
                 name="search"
@@ -78,7 +91,7 @@ export default function AllVisaApplications() {
             </form>
           </section>
           <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {applications.map((application) => (
+            {filteredApplications.map((application) => (
               <section key={application._id} className="rounded p-4 shadow">
                 <img
                   src={application.countryImage}
@@ -110,7 +123,7 @@ export default function AllVisaApplications() {
                 </div>
                 <hr />
                 <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Application Mathod</p>
+                  <p className="font-semibold">Application Method</p>
                   <p>{application.applicationMethod}</p>
                 </div>
                 <hr />
