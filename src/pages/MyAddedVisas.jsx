@@ -1,15 +1,40 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { VisaContext } from "../provider/VisaProvider";
+import Swal from "sweetalert2";
 
 export default function MyAddedVisas() {
   const { user } = useContext(AuthContext);
-  const { visas } = useContext(VisaContext);
+  const { visas, setVisas } = useContext(VisaContext);
   const [myAddedVisas, setMyAddedVisas] = useState([]);
 
   useEffect(() => {
     setMyAddedVisas(visas.filter((visa) => visa?.email === user?.email));
   }, [visas, user]);
+
+
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/visas/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Visa deleted successfully",
+            icon: "success",
+          });
+          const remainingMyAddedVisas = myAddedVisas.filter(
+            (visa) => visa._id !== id,
+          );
+          setMyAddedVisas(remainingMyAddedVisas);
+          const remainingVisas = visas.filter((visa) => visa._id !== id);
+          setVisas(remainingVisas);
+        }
+      });
+  };
 
   return (
     <>
@@ -62,7 +87,10 @@ export default function MyAddedVisas() {
                   <button className="w-full rounded bg-[#4682A9] py-2 text-white">
                     Update
                   </button>
-                  <button className="w-full rounded bg-[#4682A9] py-2 text-white">
+                  <button
+                    onClick={() => handleDelete(visa._id)}
+                    className="w-full rounded bg-[#4682A9] py-2 text-white"
+                  >
                     Delete
                   </button>
                 </div>
