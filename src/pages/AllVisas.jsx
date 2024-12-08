@@ -13,7 +13,7 @@ export default function AllVisas() {
           {/* filter based on visa type */}
           <section className="mb-8 flex items-center gap-4">
             <h2 className="text-xl font-semibold">Filter By:</h2>
-            <form action="">
+            <form action="" className="flex items-center gap-4">
               <label htmlFor="visaType" className="sr-only">
                 Visa Type
               </label>
@@ -29,6 +29,12 @@ export default function AllVisas() {
                 <option value="Official visa">Official visa</option>
                 <option value="Business visa">Business visa</option>
               </select>
+              <button
+                type="submit"
+                className="rounded bg-[#4682A9] px-4 py-2 text-white"
+              >
+                Filter
+              </button>
             </form>
           </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

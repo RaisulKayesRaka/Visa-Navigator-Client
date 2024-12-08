@@ -4,7 +4,6 @@ import { AuthContext } from "../provider/AuthProvider";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
 
   const openSidebar = () => {
     document.getElementById("sidebar").style.transform = "translateX(-16rem)";

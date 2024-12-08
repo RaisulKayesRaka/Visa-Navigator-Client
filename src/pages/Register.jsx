@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const { setUser, createNewUser, updateUserProfile, googleLogIn } =
@@ -32,13 +33,36 @@ export default function Register() {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
-        updateUserProfile({ displayName: name, photoURL: photoUrl })
-          .then(() => {
-            navigate("/");
-          })
-          .catch((error) => {
-            setError(error.code);
-          });
+        const createdAt = user?.metadata?.creationTime;
+        updateUserProfile({ displayName: name, photoURL: photoUrl }).then(
+          () => {
+            const newUser = {
+              name: name,
+              email: email,
+              photoUrl: photoUrl,
+              createdAt: createdAt,
+            };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(newUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data?.insertedId) {
+                  Swal.fire({
+                    title: "Registration Successful",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              });
+          },
+        );
       })
       .catch((error) => {
         setError(error.code);

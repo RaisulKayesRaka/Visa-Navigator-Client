@@ -1,7 +1,13 @@
+import { useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
+
 export default function AddVisa() {
-  const handleSubmit = (event) => {
+  const { user } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
     event.preventDefault();
-    const form = event.target;
+    const form = e.target;
     const countryName = form.countryName.value;
     const countryImage = form.countryImage.value;
     const visaType = form.visaType.value;
@@ -20,6 +26,7 @@ export default function AddVisa() {
     });
 
     const newVisa = {
+      email: user?.email,
       countryName,
       countryImage,
       visaType,
@@ -32,6 +39,29 @@ export default function AddVisa() {
       requiredDocuments,
     };
     console.log(newVisa);
+
+    fetch("http://localhost:5000/visas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newVisa),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Visa added successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          e.target.reset();
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding visa:", error);
+      });
   };
 
   return (
