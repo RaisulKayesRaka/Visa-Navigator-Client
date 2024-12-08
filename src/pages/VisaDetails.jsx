@@ -1,13 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 export default function VisaDetails() {
   const loaderData = useLoaderData();
-  console.log(loaderData);
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const email = form.email.value;
     const firstName = form.firstName.value;
     const lastName = form.lastName.value;
     const appliedDate = new Date().toISOString().slice(0, 10);
@@ -16,7 +19,17 @@ export default function VisaDetails() {
       firstName,
       lastName,
       appliedDate,
-      ...loaderData,
+      email,
+      countryName: loaderData.countryName,
+      countryImage: loaderData.countryImage,
+      visaType: loaderData.visaType,
+      processingTime: loaderData.processingTime,
+      ageRestriction: loaderData.ageRestriction,
+      fee: loaderData.fee,
+      validity: loaderData.validity,
+      applicationMethod: loaderData.applicationMethod,
+      description: loaderData.description,
+      requiredDocuments: loaderData.requiredDocuments,
     };
 
     fetch("http://localhost:5000/applications", {
@@ -147,7 +160,7 @@ export default function VisaDetails() {
                       id="email"
                       name="email"
                       placeholder="Enter your email"
-                      defaultValue={loaderData.email}
+                      defaultValue={user?.email}
                       className="w-full rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
                       required
                     />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 export default function AllVisaApplications() {
   const { user } = useContext(AuthContext);
@@ -16,6 +16,27 @@ export default function AllVisaApplications() {
         ),
       );
   }, [user]);
+
+  const handleCancel = (id) => {
+    fetch(`http://localhost:5000/applications/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Application canceled successfully",
+            icon: "success",
+          });
+          const remainingApplications = applications.filter(
+            (application) => application._id !== id,
+          );
+          setApplications(remainingApplications);
+        }
+      });
+  };
   return (
     <>
       <section className="py-12">
@@ -98,9 +119,12 @@ export default function AllVisaApplications() {
                   <p>{application.email}</p>
                 </div>
                 <div className="mt-4">
-                  <Link className="block w-full rounded bg-[#4682A9] py-2 text-center text-white">
+                  <button
+                    onClick={() => handleCancel(application._id)}
+                    className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
+                  >
                     Cancel
-                  </Link>
+                  </button>
                 </div>
               </section>
             ))}
