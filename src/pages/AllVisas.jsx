@@ -1,8 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { VisaContext } from "../provider/VisaProvider";
 import { Link } from "react-router-dom";
+
 export default function AllVisas() {
   const { visas } = useContext(VisaContext);
+  const [selectedVisaType, setSelectedVisaType] = useState("");
+
+  const handleFilter = (e) => {
+    e.preventDefault();
+    setSelectedVisaType(e.target.visaType.value);
+  };
+
+  const filteredVisas = selectedVisaType
+    ? visas.filter((visa) => visa.visaType === selectedVisaType)
+    : visas;
 
   return (
     <>
@@ -18,7 +29,7 @@ export default function AllVisas() {
           {/* filter based on visa type */}
           <section className="mb-8 flex items-center gap-4">
             <h2 className="text-xl font-semibold">Filter By:</h2>
-            <form action="" className="flex items-center gap-4">
+            <form onSubmit={handleFilter} className="flex items-center gap-4">
               <label htmlFor="visaType" className="sr-only">
                 Visa Type
               </label>
@@ -26,7 +37,6 @@ export default function AllVisas() {
                 id="visaType"
                 name="visaType"
                 className="rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
-                required
               >
                 <option value="">All</option>
                 <option value="Tourist visa">Tourist visa</option>
@@ -43,7 +53,7 @@ export default function AllVisas() {
             </form>
           </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {visas.map((visa) => (
+            {filteredVisas.map((visa) => (
               <section key={visa._id} className="rounded p-4 shadow">
                 <img
                   src={visa.countryImage}
@@ -60,7 +70,7 @@ export default function AllVisas() {
                 </div>
                 <hr />
                 <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Procession time</p>
+                  <p className="font-semibold">Processing time</p>
                   <p>{visa.processingTime}</p>
                 </div>
                 <hr />

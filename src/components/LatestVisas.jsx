@@ -19,7 +19,7 @@ export default function LatestVisas() {
         </div>
         <div className="h-8"></div>
         <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {visas.map((visa) => (
+          {visas.slice(0, 6).map((visa) => (
             <section key={visa._id} className="rounded p-4 shadow">
               <img
                 src={visa.countryImage}
