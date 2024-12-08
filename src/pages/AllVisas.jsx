@@ -3,8 +3,12 @@ export default function AllVisas() {
     <>
       <section className="py-12">
         <div className="mx-auto w-11/12 max-w-screen-2xl">
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-center text-[#4682A9]">-- All Visas --</h2>
+          <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">
+            <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded bg-[#4682A9]/70">
+              <h2 className="text-center text-4xl font-semibold text-white">
+                All Visas
+              </h2>
+            </div>
           </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <section className="rounded p-4 shadow">
