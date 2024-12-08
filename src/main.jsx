@@ -15,6 +15,7 @@ import { HelmetProvider } from "react-helmet-async";
 import AuthProvider from "./provider/AuthProvider.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import VisaProvider from "./provider/VisaProvider.jsx";
+import VisaDetails from "./pages/VisaDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,13 @@ const router = createBrowserRouter([
             <MyVisaApplications />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/visa-details/:id",
+        element: <VisaDetails />,
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/visas/${params.id}`);
+        },
       },
       {
         path: "/login",

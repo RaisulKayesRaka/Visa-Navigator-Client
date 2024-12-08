@@ -55,9 +55,12 @@ export default function LatestVisas() {
                 <p>{visa.applicationMethod}</p>
               </div>
               <div className="mt-4">
-                <button className="w-full rounded bg-[#4682A9] py-2 text-white">
+                <Link
+                  to={`/visa-details/${visa._id}`}
+                  className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
+                >
                   See Details
-                </button>
+                </Link>
               </div>
             </section>
           ))}

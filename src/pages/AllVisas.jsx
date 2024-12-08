@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { VisaContext } from "../provider/VisaProvider";
+import { Link } from "react-router-dom";
 export default function AllVisas() {
   const { visas } = useContext(VisaContext);
 
@@ -73,9 +74,12 @@ export default function AllVisas() {
                   <p>{visa.validity}</p>
                 </div>
                 <div className="mt-4">
-                  <button className="w-full rounded bg-[#4682A9] py-2 text-white">
+                  <Link
+                    to={`/visa-details/${visa._id}`}
+                    className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
+                  >
                     See Details
-                  </button>
+                  </Link>
                 </div>
               </section>
             ))}
