@@ -18,25 +18,37 @@ export default function AllVisaApplications() {
   }, [user]);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:5000/applications/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Application canceled successfully",
-            icon: "success",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/applications/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Application canceled successfully.",
+                icon: "success",
+              });
+              const remainingApplications = applications.filter(
+                (application) => application._id !== id,
+              );
+              setApplications(remainingApplications);
+            }
           });
-          const remainingApplications = applications.filter(
-            (application) => application._id !== id,
-          );
-          setApplications(remainingApplications);
-        }
-      });
+      }
+    });
   };
+
   return (
     <>
       <section className="py-12">
@@ -65,7 +77,7 @@ export default function AllVisaApplications() {
               </button>
             </form>
           </section>
-          <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {applications.map((application) => (
               <section key={application._id} className="rounded p-4 shadow">
                 <img

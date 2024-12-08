@@ -49,7 +49,6 @@ export default function VisaDetails() {
             confirmButtonText: "Ok",
           });
 
-          // close modal after submitting application
           document.getElementById("my_modal_3").close();
         }
       })
