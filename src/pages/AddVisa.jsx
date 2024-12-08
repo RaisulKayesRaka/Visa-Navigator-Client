@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { VisaContext } from "../provider/VisaProvider";
 
 export default function AddVisa() {
   const { user } = useContext(AuthContext);
+  const { visas, setVisas } = useContext(VisaContext);
 
   const handleSubmit = (e) => {
-    event.preventDefault();
+    e.preventDefault();
     const form = e.target;
     const countryName = form.countryName.value;
     const countryImage = form.countryImage.value;
@@ -38,7 +40,6 @@ export default function AddVisa() {
       description,
       requiredDocuments,
     };
-    console.log(newVisa);
 
     fetch("http://localhost:5000/visas", {
       method: "POST",
@@ -56,6 +57,7 @@ export default function AddVisa() {
             icon: "success",
             confirmButtonText: "Ok",
           });
+          setVisas([...visas, newVisa]); // Update visas state
           e.target.reset();
         }
       })
