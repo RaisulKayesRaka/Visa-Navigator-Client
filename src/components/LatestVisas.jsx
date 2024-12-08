@@ -1,4 +1,5 @@
 import { FaTelegramPlane } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function LatestVisas() {
   return (
@@ -14,7 +15,7 @@ export default function LatestVisas() {
           </h2>
         </div>
         <div className="h-8"></div>
-        <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <section className="rounded p-4 shadow">
             <div className="h-48 rounded bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRofoHVTNeOXThr6qwXtFZjcCUJTgYcNG3cxA&s')] bg-cover bg-no-repeat text-white"></div>
             <h3 className="p-2 text-center text-lg font-semibold text-[#4682A9]">
@@ -234,9 +235,9 @@ export default function LatestVisas() {
         </section>
         <div className="h-8"></div>
 
-        <button className="w-full rounded border border-[#4682A9] p-1 font-semibold text-[#4682A9]">
+        <Link to="/all-visas" className="block text-center w-full rounded border border-[#4682A9] p-1 font-semibold text-[#4682A9]">
           See all visas
-        </button>
+        </Link>
       </div>
     </section>
   );
