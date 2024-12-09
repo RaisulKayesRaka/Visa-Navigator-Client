@@ -8,6 +8,11 @@ import { Bounce } from "react-awesome-reveal";
 export default function LatestVisas() {
   const { visas } = useContext(VisaContext);
   const { theme } = useContext(ThemeContext);
+
+  const latestVisas = visas
+    .slice()
+    .sort((a, b) => new Date(b.addedDate) - new Date(a.addedDate))
+    .slice(0, 6);
   return (
     <section
       className={`${theme === "light" ? "" : "dark"} py-12 dark:bg-gray-800 dark:text-white`}
@@ -25,7 +30,7 @@ export default function LatestVisas() {
         </div>
         <div className="h-8"></div>
         <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {visas.slice(0, 6).map((visa) => (
+          {latestVisas.map((visa) => (
             <Bounce key={visa.id}>
               <section key={visa._id} className="rounded border p-4">
                 <img

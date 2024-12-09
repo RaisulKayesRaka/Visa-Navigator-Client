@@ -166,7 +166,7 @@ export default function MyAddedVisas() {
                     </button>
                   </div>
                   <dialog id={`my_modal_${visa._id}`} className="modal">
-                    <div className="modal-box">
+                    <div className="modal-box max-w-screen-xl">
                       <form method="dialog">
                         <button className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">
                           ✕
