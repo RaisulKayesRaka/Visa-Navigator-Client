@@ -75,7 +75,32 @@ export default function Register() {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigate("/");
+        const createdAt = user?.metadata?.creationTime;
+        const newUser = {
+          name: user?.displayName,
+          email: user?.email,
+          photoUrl: user?.photoURL,
+          createdAt: createdAt,
+        };
+        fetch("https://visa-navigator-server-chi.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data?.insertedId) {
+              Swal.fire({
+                title: "Registration Successful",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         setError(error.code);
