@@ -73,7 +73,7 @@ export default function AllVisaApplications() {
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">
             <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded bg-[#4682A9]/70">
-              <h2 className="text-center text-4xl font-semibold text-white">
+              <h2 className="w-11/12 text-center text-4xl font-semibold text-white">
                 All Visa Applications
               </h2>
             </div>
@@ -83,7 +83,7 @@ export default function AllVisaApplications() {
               <input
                 type="text"
                 name="search"
-                placeholder="Search by country name"
+                placeholder="Search by country"
                 id="search"
                 className="w-full rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
               />

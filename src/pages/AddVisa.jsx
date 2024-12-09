@@ -77,7 +77,7 @@ export default function AddVisa() {
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">
             <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded bg-[#4682A9]/70">
-              <h2 className="text-center text-4xl font-semibold text-white">
+              <h2 className="w-11/12 text-center text-4xl font-semibold text-white">
                 Add Visa
               </h2>
             </div>

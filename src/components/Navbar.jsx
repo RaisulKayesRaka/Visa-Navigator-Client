@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { ThemeContext } from "../provider/ThemeProvider";
 import { Tooltip } from "react-tooltip";
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
@@ -138,10 +140,10 @@ export default function Navbar() {
         </div>
         <div className="lg:hidden">
           <button
-            className="flex h-8 w-8 items-center justify-center"
+            className="flex h-8 w-8 items-center justify-center text-3xl dark:text-white"
             onClick={openSidebar}
           >
-            <img src="/assets/menu.svg" alt="" />
+            <FiMenu />
           </button>
         </div>
       </section>
@@ -149,14 +151,14 @@ export default function Navbar() {
       {/* sidebar */}
       <section
         id="sidebar"
-        className="fixed -right-64 bottom-0 top-0 z-50 flex h-screen w-64 flex-col gap-4 bg-[#F6F4EB] p-10 shadow transition duration-500 lg:hidden"
+        className="fixed -right-64 bottom-0 top-0 z-50 flex h-screen w-64 flex-col gap-4 bg-[#F6F4EB] p-10 shadow transition duration-500 lg:hidden dark:bg-gray-900 dark:text-white"
       >
         <div>
           <button
-            className="absolute right-4 top-4 h-8 w-8"
+            className="absolute right-4 top-4 h-8 w-8 text-3xl dark:text-white"
             onClick={closeSidebar}
           >
-            <img src="/assets/close.svg" alt="" />
+            <IoClose />
           </button>
         </div>
         <div className="flex h-full flex-col gap-4">

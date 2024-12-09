@@ -10,7 +10,7 @@ export default function AllVisas() {
 
   const handleFilter = (e) => {
     e.preventDefault();
-    setSelectedVisaType(e.target.visaType.value);
+    setSelectedVisaType(e.target.value);
   };
 
   const filteredVisas = selectedVisaType
@@ -26,19 +26,19 @@ export default function AllVisas() {
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">
             <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded bg-[#4682A9]/70">
-              <h2 className="text-center text-4xl font-semibold text-white">
+              <h2 className="w-11/12 text-center text-4xl font-semibold text-white">
                 All Visas
               </h2>
             </div>
           </section>
-          {/* filter based on visa type */}
-          <section className="mb-8 flex items-center gap-4">
+          <section className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
             <h2 className="text-xl font-semibold">Filter By:</h2>
-            <form onSubmit={handleFilter} className="flex items-center gap-4">
+            <form className="flex items-center gap-4">
               <label htmlFor="visaType" className="sr-only">
                 Visa Type
               </label>
               <select
+                onChange={handleFilter}
                 id="visaType"
                 name="visaType"
                 className="rounded border px-4 py-2 focus:outline-none focus:ring focus:ring-[#749BC2]"
@@ -49,12 +49,6 @@ export default function AllVisas() {
                 <option value="Official visa">Official visa</option>
                 <option value="Business visa">Business visa</option>
               </select>
-              <button
-                type="submit"
-                className="rounded bg-[#4682A9] px-4 py-2 text-white"
-              >
-                Filter
-              </button>
             </form>
           </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
