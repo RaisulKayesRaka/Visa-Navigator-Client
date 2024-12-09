@@ -40,6 +40,7 @@ export default function AddVisa() {
       applicationMethod,
       description,
       requiredDocuments,
+      addedDate: new Date().toISOString(),
     };
 
     fetch("http://localhost:5000/visas", {
@@ -58,7 +59,7 @@ export default function AddVisa() {
             icon: "success",
             confirmButtonText: "Ok",
           });
-          setVisas([...visas, newVisa]); // Update visas state
+          setVisas([...visas, newVisa]);
           e.target.reset();
         }
       })
