@@ -43,7 +43,7 @@ export default function AddVisa() {
       addedDate: new Date().toISOString(),
     };
 
-    fetch("http://localhost:5000/visas", {
+    fetch("https://visa-navigator-server-chi.vercel.app/visas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

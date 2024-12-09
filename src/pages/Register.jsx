@@ -43,7 +43,7 @@ export default function Register() {
               photoUrl: photoUrl,
               createdAt: createdAt,
             };
-            fetch("http://localhost:5000/users", {
+            fetch("https://visa-navigator-server-chi.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

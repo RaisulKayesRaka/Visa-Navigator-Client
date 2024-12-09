@@ -33,7 +33,7 @@ export default function VisaDetails() {
       requiredDocuments: loaderData.requiredDocuments,
     };
 
-    fetch("http://localhost:5000/applications", {
+    fetch("https://visa-navigator-server-chi.vercel.app/applications", {
       method: "POST",
       headers: {
         "content-type": "application/json",

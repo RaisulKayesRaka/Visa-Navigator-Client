@@ -11,7 +11,7 @@ export default function AllVisaApplications() {
   const [filteredApplications, setFilteredApplications] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/applications")
+    fetch("https://visa-navigator-server-chi.vercel.app/applications")
       .then((res) => res.json())
       .then((data) => {
         const myApplications = data.filter(
@@ -42,9 +42,12 @@ export default function AllVisaApplications() {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/applications/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://visa-navigator-server-chi.vercel.app/applications/${id}`,
+          {
+            method: "DELETE",
+          },
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {

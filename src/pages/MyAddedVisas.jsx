@@ -25,7 +25,7 @@ export default function MyAddedVisas() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/visas/${id}`, {
+        fetch(`https://visa-navigator-server-chi.vercel.app/visas/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -66,7 +66,7 @@ export default function MyAddedVisas() {
         .map((doc) => doc.value),
     };
 
-    fetch(`http://localhost:5000/visas/${id}`, {
+    fetch(`https://visa-navigator-server-chi.vercel.app/visas/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
