@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { ThemeContext } from "../provider/ThemeProvider";
+import { Tooltip } from "react-tooltip";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
@@ -86,13 +87,17 @@ export default function Navbar() {
             className="toggle"
             checked={theme === "dark"}
             onChange={toggleTheme}
+            data-tooltip-id="toggle-tooltip"
+            data-tooltip-content="Toggle Theme"
           />
+          <Tooltip id="toggle-tooltip" />
+
           {user && user?.email ? (
             <div className="group relative flex items-center gap-2">
               <div>
                 <img src={user?.photoURL} alt="" className="h-8 w-8 rounded" />
               </div>
-              <div className="absolute right-0 top-full hidden w-72 rounded bg-white p-4 shadow group-hover:block">
+              <div className="absolute right-0 top-full hidden w-72 rounded bg-white p-4 shadow group-hover:block dark:bg-gray-800 dark:text-white">
                 <div className="space-y-4">
                   <p className="whitespace-nowrap font-semibold">
                     {user?.displayName}

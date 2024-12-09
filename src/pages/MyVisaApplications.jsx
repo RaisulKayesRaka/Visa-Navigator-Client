@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import { Bounce } from "react-awesome-reveal";
 
 export default function AllVisaApplications() {
   const { user } = useContext(AuthContext);
@@ -92,66 +93,68 @@ export default function AllVisaApplications() {
           </section>
           <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredApplications.map((application) => (
-              <section key={application._id} className="rounded p-4 shadow">
-                <img
-                  src={application.countryImage}
-                  alt={application.countryName}
-                  className="h-48 w-full rounded object-cover"
-                />
-                <h3 className="p-2 text-center text-lg font-semibold text-[#4682A9]">
-                  {application.countryName}
-                </h3>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Visa type</p>
-                  <p>{application.visaType}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Procession time</p>
-                  <p>{application.processingTime}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Fee</p>
-                  <p>${application.fee}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Validity</p>
-                  <p>{application.validity}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Application Method</p>
-                  <p>{application.applicationMethod}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Applied Date</p>
-                  <p>{application.appliedDate}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Applicants Name</p>
-                  <p>
-                    {application.firstName} {application.lastName}
-                  </p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Applicants Email</p>
-                  <p>{application.email}</p>
-                </div>
-                <div className="mt-4">
-                  <button
-                    onClick={() => handleCancel(application._id)}
-                    className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </section>
+              <Bounce key={application._id}>
+                <section key={application._id} className="rounded p-4 shadow">
+                  <img
+                    src={application.countryImage}
+                    alt={application.countryName}
+                    className="h-48 w-full rounded object-cover"
+                  />
+                  <h3 className="p-2 text-center text-lg font-semibold text-[#4682A9]">
+                    {application.countryName}
+                  </h3>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Visa type</p>
+                    <p>{application.visaType}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Procession time</p>
+                    <p>{application.processingTime}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Fee</p>
+                    <p>${application.fee}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Validity</p>
+                    <p>{application.validity}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Application Method</p>
+                    <p>{application.applicationMethod}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Applied Date</p>
+                    <p>{application.appliedDate}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Applicants Name</p>
+                    <p>
+                      {application.firstName} {application.lastName}
+                    </p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Applicants Email</p>
+                    <p>{application.email}</p>
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      onClick={() => handleCancel(application._id)}
+                      className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </section>
+              </Bounce>
             ))}
           </section>
         </div>

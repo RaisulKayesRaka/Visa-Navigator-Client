@@ -3,7 +3,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Banner.css";
-import { Autoplay, Pagination, Navigation, Keyboard } from "swiper/modules";
+import { Pagination, Navigation, Keyboard } from "swiper/modules";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Banner() {
   return (
@@ -13,11 +14,7 @@ export default function Banner() {
       loop={true}
       pagination={{ clickable: true }}
       keyboard={{ enabled: true }}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
-      modules={[Autoplay, Pagination, Navigation, Keyboard]}
+      modules={[Pagination, Navigation, Keyboard]}
       className="mySwiper"
       aria-label="Visa Navigator Carousel"
     >
@@ -26,12 +23,9 @@ export default function Banner() {
           <div className="flex h-full items-center justify-center px-4 text-center">
             <div>
               <h1 className="text-4xl font-semibold md:text-6xl">
-                Explore Visa Options
+                {/* Explore Visa Options */}
+                <Typewriter words={["Explore Visa Options"]} loop={0} />
               </h1>
-              <p className="mt-4">
-                Navigate through various visa categories tailored for your
-                destination.
-              </p>
             </div>
           </div>
         </div>
@@ -41,12 +35,8 @@ export default function Banner() {
           <div className="flex h-full items-center justify-center px-4 text-center">
             <div>
               <h1 className="text-4xl font-semibold md:text-6xl">
-                Expert Guidance
+                <Typewriter words={["Expert Guidance"]} loop={0} />
               </h1>
-              <p className="mt-4">
-                Get expert advice and step-by-step instructions for a smooth
-                process.
-              </p>
             </div>
           </div>
         </div>
@@ -56,12 +46,8 @@ export default function Banner() {
           <div className="flex h-full items-center justify-center px-4 text-center">
             <div>
               <h1 className="text-4xl font-semibold md:text-6xl">
-                Start Your Journey
+                <Typewriter words={["Start Your Journey"]} loop={0} />
               </h1>
-              <p className="mt-4">
-                Begin your application with confidence and track your progress
-                online.
-              </p>
             </div>
           </div>
         </div>

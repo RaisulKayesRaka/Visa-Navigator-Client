@@ -5,7 +5,7 @@ export default function ErrorPage() {
   return (
     <>
       <div className="flex h-screen w-screen flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center border-4 border-red-500 rounded-xl p-4">
+        <div className="flex flex-col items-center justify-center rounded-xl border-4 border-red-500 p-4">
           <h1 className="text-5xl font-bold text-red-500">{error.status}</h1>
           <p className="text-xl font-medium">
             {error.statusText || error.message}

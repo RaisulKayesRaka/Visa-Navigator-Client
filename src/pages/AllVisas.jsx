@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { VisaContext } from "../provider/VisaProvider";
 import { Link } from "react-router-dom";
+import { Bounce } from "react-awesome-reveal";
 
 export default function AllVisas() {
   const { visas } = useContext(VisaContext);
@@ -54,44 +55,46 @@ export default function AllVisas() {
           </section>
           <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredVisas.map((visa) => (
-              <section key={visa._id} className="rounded p-4 shadow">
-                <img
-                  src={visa.countryImage}
-                  alt={visa.countryName}
-                  className="h-48 w-full rounded object-cover"
-                />
-                <h3 className="p-2 text-center text-lg font-semibold text-[#4682A9]">
-                  {visa.countryName}
-                </h3>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Visa type</p>
-                  <p>{visa.visaType}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Processing time</p>
-                  <p>{visa.processingTime}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Fee</p>
-                  <p>${visa.fee}</p>
-                </div>
-                <hr />
-                <div className="my-2 flex justify-between">
-                  <p className="font-semibold">Validity</p>
-                  <p>{visa.validity}</p>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    to={`/visa-details/${visa._id}`}
-                    className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
-                  >
-                    See Details
-                  </Link>
-                </div>
-              </section>
+              <Bounce key={visa.id}>
+                <section key={visa._id} className="rounded p-4 shadow">
+                  <img
+                    src={visa.countryImage}
+                    alt={visa.countryName}
+                    className="h-48 w-full rounded object-cover"
+                  />
+                  <h3 className="p-2 text-center text-lg font-semibold text-[#4682A9]">
+                    {visa.countryName}
+                  </h3>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Visa type</p>
+                    <p>{visa.visaType}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Processing time</p>
+                    <p>{visa.processingTime}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Fee</p>
+                    <p>${visa.fee}</p>
+                  </div>
+                  <hr />
+                  <div className="my-2 flex justify-between">
+                    <p className="font-semibold">Validity</p>
+                    <p>{visa.validity}</p>
+                  </div>
+                  <div className="mt-4">
+                    <Link
+                      to={`/visa-details/${visa._id}`}
+                      className="block w-full rounded bg-[#4682A9] py-2 text-center text-white"
+                    >
+                      See Details
+                    </Link>
+                  </div>
+                </section>
+              </Bounce>
             ))}
           </section>
         </div>

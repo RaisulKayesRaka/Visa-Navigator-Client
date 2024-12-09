@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
 
 export default function Register() {
   const { setUser, createNewUser, updateUserProfile, googleLogIn } =
@@ -140,8 +141,11 @@ export default function Register() {
                     placeholder="Password"
                     id="password"
                     className="w-full rounded border p-2"
+                    data-tooltip-id="password"
+                    data-tooltip-content="Password must be at least 6 characters and include uppercase and lowercase letters."
                     required
                   />
+                  <Tooltip id="password" />
                   {showPassword ? (
                     <FaRegEyeSlash
                       className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
