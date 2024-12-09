@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { VisaContext } from "../provider/VisaProvider";
 import { Link } from "react-router-dom";
 import { Bounce } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 export default function AllVisas() {
   const { visas } = useContext(VisaContext);
@@ -18,6 +19,9 @@ export default function AllVisas() {
 
   return (
     <>
+      <Helmet>
+        <title>All Visas | Visa Navigator</title>
+      </Helmet>
       <section className="py-12">
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">

@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { Bounce } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 export default function AllVisaApplications() {
   const { user } = useContext(AuthContext);
@@ -65,6 +66,9 @@ export default function AllVisaApplications() {
 
   return (
     <>
+      <Helmet>
+        <title>My Visa Applications | Visa Navigator</title>
+      </Helmet>
       <section className="py-12">
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">

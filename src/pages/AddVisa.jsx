@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import { VisaContext } from "../provider/VisaProvider";
+import { Helmet } from "react-helmet-async";
 
 export default function AddVisa() {
   const { user } = useContext(AuthContext);
@@ -68,6 +69,9 @@ export default function AddVisa() {
 
   return (
     <>
+      <Helmet>
+        <title>Add Visa | Visa Navigator</title>
+      </Helmet>
       <section className="py-12">
         <div className="mx-auto w-11/12 max-w-screen-2xl">
           <section className="relative mb-8 h-32 rounded bg-[url('../assets/heading.png')] bg-cover bg-center bg-no-repeat">
