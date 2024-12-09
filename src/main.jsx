@@ -16,6 +16,7 @@ import AuthProvider from "./provider/AuthProvider.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import VisaProvider from "./provider/VisaProvider.jsx";
 import VisaDetails from "./pages/VisaDetails.jsx";
+import { ThemeProvider } from "./provider/ThemeProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -77,11 +78,13 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>
-      <AuthProvider>
-        <VisaProvider>
-          <RouterProvider router={router} />
-        </VisaProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <VisaProvider>
+            <RouterProvider router={router} />
+          </VisaProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </StrictMode>,
 );

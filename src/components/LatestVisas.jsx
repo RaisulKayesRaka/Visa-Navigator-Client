@@ -2,11 +2,15 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { VisaContext } from "../provider/VisaProvider";
 import { useContext } from "react";
+import { ThemeContext } from "../provider/ThemeProvider";
 
 export default function LatestVisas() {
   const { visas } = useContext(VisaContext);
+  const { theme } = useContext(ThemeContext);
   return (
-    <section className="py-12">
+    <section
+      className={`${theme === "light" ? "" : "dark"} py-12 dark:bg-gray-800 dark:text-white`}
+    >
       <div className="mx-auto w-11/12 max-w-screen-2xl">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 text-[#4682A9]">
@@ -20,7 +24,7 @@ export default function LatestVisas() {
         <div className="h-8"></div>
         <section className="gird-cols-1 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {visas.slice(0, 6).map((visa) => (
-            <section key={visa._id} className="rounded p-4 shadow">
+            <section key={visa._id} className="rounded border p-4">
               <img
                 src={visa.countryImage}
                 alt={visa.countryName}

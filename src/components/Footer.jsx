@@ -2,11 +2,16 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import { ThemeContext } from "../provider/ThemeProvider";
+import { useContext } from "react";
 export default function Footer() {
+  const { theme } = useContext(ThemeContext);
   return (
-    <footer className="bg-[#F6F4EB]">
+    <footer
+      className={`${theme === "light" ? "" : "dark"} bg-[#F6F4EB] dark:bg-gray-900 dark:text-white`}
+    >
       <div className="mx-auto w-11/12 max-w-screen-2xl">
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between py-4">
+        <div className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row">
           <div className="flex items-center justify-center gap-2">
             <img
               src="/visa-navigator-logo-48.png"
@@ -17,7 +22,7 @@ export default function Footer() {
               Visa Navigator
             </span>
           </div>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-8">
+          <div className="flex flex-col items-center justify-center lg:flex-row lg:gap-8">
             <div className="flex items-center gap-2">
               <FaLocationDot />
               <p>Dhaka, Bangladesh</p>

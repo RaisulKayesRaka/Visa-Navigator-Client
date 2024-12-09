@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { ThemeContext } from "../provider/ThemeProvider";
 
 export default function Navbar() {
   const { user, logOut } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const openSidebar = () => {
     document.getElementById("sidebar").style.transform = "translateX(-16rem)";
@@ -12,7 +14,9 @@ export default function Navbar() {
     document.getElementById("sidebar").style.transform = "translateX(16rem)";
   };
   return (
-    <nav className="sticky top-0 z-50 bg-[#F6F4EB]">
+    <nav
+      className={`${theme === "light" ? "" : "dark"} sticky top-0 z-50 bg-[#F6F4EB] dark:bg-gray-900`}
+    >
       <section className="mx-auto flex w-11/12 max-w-screen-2xl items-center justify-between gap-4 py-4">
         <div className="flex items-center justify-center gap-2">
           <img
@@ -20,11 +24,11 @@ export default function Navbar() {
             className="h-8"
             alt="Visa Navigator Logo"
           />
-          <span className="self-center whitespace-nowrap text-2xl font-semibold">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
             Visa Navigator
           </span>
         </div>
-        <div className="hidden items-center justify-center gap-8 whitespace-nowrap lg:flex">
+        <div className="hidden items-center justify-center gap-8 whitespace-nowrap lg:flex dark:text-white">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -76,7 +80,13 @@ export default function Navbar() {
             My Visa Applications
           </NavLink>
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden items-center justify-center gap-4 lg:flex">
+          <input
+            type="checkbox"
+            className="toggle"
+            checked={theme === "dark"}
+            onChange={toggleTheme}
+          />
           {user && user?.email ? (
             <div className="group relative flex items-center gap-2">
               <div>
@@ -202,7 +212,16 @@ export default function Navbar() {
               My Visa Applications
             </NavLink>
           </div>
-          <section>
+          <section className="space-y-4">
+            <div className="flex items-center gap-2">
+              Toogle Theme
+              <input
+                type="checkbox"
+                className="toggle"
+                checked={theme === "dark"}
+                onChange={toggleTheme}
+              />
+            </div>
             {user && user?.email ? (
               <div className="space-y-4">
                 <div>

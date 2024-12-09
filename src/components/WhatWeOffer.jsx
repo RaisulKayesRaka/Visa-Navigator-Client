@@ -1,9 +1,14 @@
 import { FaTelegramPlane } from "react-icons/fa";
+import { useContext } from "react";
+import { ThemeContext } from "../provider/ThemeProvider";
 
 export default function WhatWeOffer() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="py-12">
+      <section
+        className={`${theme === "light" ? "" : "dark"} py-12 dark:bg-gray-800 dark:text-white`}
+      >
         <section className="mx-auto w-11/12 max-w-screen-2xl">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 text-[#4682A9]">
@@ -16,7 +21,7 @@ export default function WhatWeOffer() {
           </div>
           <div className="h-8"></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="rounded bg-white p-6 border">
+            <div className="rounded border p-6">
               <h3 className="mb-4 text-xl font-semibold">
                 Comprehensive Visa Information
               </h3>
@@ -25,7 +30,7 @@ export default function WhatWeOffer() {
                 around the globe, tailored to your travel needs.
               </p>
             </div>
-            <div className="rounded bg-white p-6 border">
+            <div className="rounded border p-6">
               <h3 className="mb-4 text-xl font-semibold">
                 Easy Application Process
               </h3>
@@ -35,7 +40,7 @@ export default function WhatWeOffer() {
               </p>
             </div>
 
-            <div className="rounded bg-white p-6 border">
+            <div className="rounded border p-6">
               <h3 className="mb-4 text-xl font-semibold">
                 Personalized Support
               </h3>
@@ -44,7 +49,7 @@ export default function WhatWeOffer() {
                 your visa-related queries.
               </p>
             </div>
-            <div className="rounded bg-white p-6 border">
+            <div className="rounded border p-6">
               <h3 className="mb-4 text-xl font-semibold">Fast and Reliable</h3>
               <p>
                 Enjoy swift processing times and reliable updates, ensuring
