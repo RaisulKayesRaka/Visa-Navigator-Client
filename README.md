@@ -15,3 +15,5 @@ This project is a Visa Navigator Portal. It allows users to check visa requireme
 ## Live Site
 
 https://visa-navigator-79ea7.web.app/
+
+![image](https://github.com/user-attachments/assets/eee06ca1-4b86-469f-9b4b-c0f7a5d0155a)
